@@ -50,7 +50,7 @@
       let marksDiv = document.getElementById("marksInput");
       marksDiv.innerHTML = ""; // clear previous
       if (n <= 0) {
-        alert("Enter a valid number of subjects bro 😅");
+        alert("Enter a valid number of subjects bro ");
         return;
       }
       for (let i = 1; i <= n; i++) {
@@ -65,7 +65,7 @@
       for (let i = 1; i <= n; i++) {
         let mark = parseFloat(document.getElementById("mark" + i).value);
         if (isNaN(mark) || mark < 0 || mark > 100) {
-          alert("Enter valid marks (0–100) da! 😤");
+          alert("Enter valid marks (0–100) ");
           return;
         }
         total += mark;
@@ -73,12 +73,12 @@
       let avg = total / n;
       let grade = "";
 
-      if (avg >= 90) grade = "A+ (Super Star 🌟)";
+      if (avg >= 90) grade = "A+ (Super Star)";
       else if (avg >= 80) grade = "A";
       else if (avg >= 70) grade = "B";
       else if (avg >= 60) grade = "C";
       else if (avg >= 50) grade = "D";
-      else grade = "F (Fail da 😭)";
+      else grade = "F (Fail )";
 
       document.getElementById("output").innerHTML =
         `Total: ${total}<br>Average: ${avg.toFixed(2)}<br>Grade: ${grade}`;
