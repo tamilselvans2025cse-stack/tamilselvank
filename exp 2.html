@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Marks Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f0f8ff;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎓 Student Marks Calculator</h2>
+  
+  <label>Enter number of subjects:</label>
+  <input type="number" id="numSubjects" min="1"><br>
+  <button onclick="createInputs()">Next</button>
+
+  <div id="marksInput"></div>
+  <div id="output"></div>
+
+  <script>
+    function createInputs() {
+      let n = document.getElementById("numSubjects").value;
+      let marksDiv = document.getElementById("marksInput");
+      marksDiv.innerHTML = ""; // clear previous
+      if (n <= 0) {
+        alert("Enter a valid number of subjects bro 😅");
+        return;
+      }
+      for (let i = 1; i <= n; i++) {
+        marksDiv.innerHTML += `<label>Mark ${i}: </label>
+          <input type="number" id="mark${i}" min="0" max="100"><br>`;
+      }
+      marksDiv.innerHTML += `<br><button onclick="calculate(${n})">Calculate</button>`;
+    }
+
+    function calculate(n) {
+      let total = 0;
+      for (let i = 1; i <= n; i++) {
+        let mark = parseFloat(document.getElementById("mark" + i).value);
+        if (isNaN(mark) || mark < 0 || mark > 100) {
+          alert("Enter valid marks (0–100) da! 😤");
+          return;
+        }
+        total += mark;
+      }
+      let avg = total / n;
+      let grade = "";
+
+      if (avg >= 90) grade = "A+ (Super Star 🌟)";
+      else if (avg >= 80) grade = "A";
+      else if (avg >= 70) grade = "B";
+      else if (avg >= 60) grade = "C";
+      else if (avg >= 50) grade = "D";
+      else grade = "F (Fail da 😭)";
+
+      document.getElementById("output").innerHTML =
+        `Total: ${total}<br>Average: ${avg.toFixed(2)}<br>Grade: ${grade}`;
+    }
+  </script>
+</body>
+</html>
